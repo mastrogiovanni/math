@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bot-config
+data:
+  telegram_bot_id: "Telegram Bot token"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: biliardino-bot
+  labels:
+    app: biliardino
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: biliardino
+  template:
+    metadata:
+      labels:
+        app: biliardino
+    spec:
+      containers:
+      - name: biliardino
+        image: mastrogiovanni/math
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+          - name: TELEGRAM_BOT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: bot-config
+                key: telegram_bot_id

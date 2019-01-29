@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "math.fullname" . }}
+  labels:
+    app: {{ template "math.name" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "math.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "math.name" . }}
+    spec:
+      containers:
+      - name: {{ template "math.name" . }}
+        image: mastrogiovanni/math
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+          - name: TELEGRAM_BOT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: {{ template "math.fullname" . }}
+                key: telegram_bot_id

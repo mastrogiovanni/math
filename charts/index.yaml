@@ -1,4 +1,13 @@
 apiVersion: v1
-entries: {}
-generated: 2019-01-29T22:35:47.491555559+01:00
-
+entries:
+  math:
+  - apiVersion: v1
+    appVersion: 0.0.1
+    created: 2019-01-29T23:05:04.271800587+01:00
+    description: Simple Telegram Bot to practice in Math
+    digest: b898be2f34e5d1be3fe9ae75bf8ed65154565be795f566a70097552130f466bd
+    name: math
+    urls:
+    - math-0.0.1.tgz
+    version: 0.0.1
+generated: 2019-01-29T23:05:04.27156152+01:00

@@ -4,23 +4,31 @@ Simple Telegram Bot to practice in Math
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+Add repository:
 
 ```console
-$ helm install math/math --name my-release \
-  --set token=NGROK-TOKEN \
-  --set expose.service=podinfo:9898
+$ helm repo add math https://mastrogiovanni.github.io/math/charts
 ```
 
-The command deploys Ngrok on the Kubernetes cluster in the default namespace.
-The [configuration](#configuration) section lists the parameters that can be configured during installation.
+```console
+$ helm repo update
+```
+
+To install the chart with the release name `math-bot`:
+
+```console
+$ helm install math/math --name math-bot \
+  --set telegram_bot_id=TELEGRAM-TOKEN
+```
+
+The command deploys Math Bot on the Kubernetes cluster in the default namespace.
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall/delete the `math-bot` deployment:
 
 ```console
-$ helm delete --purge my-release
+$ helm delete --purge math-bot
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
@@ -31,34 +39,15 @@ The following tables lists the configurable parameters of the Grafana chart and 
 
 Parameter | Description | Default
 --- | --- | ---
-`image.repository` | Image repository | `stefanprodan/ngrok`
-`image.pullPolicy` | Image pull policy | `IfNotPresent`
-`image.tag` | Image tag | `latest`
-`replicaCount` | desired number of pods | `1`
-`tolerations` | List of node taints to tolerate | `[]`
-`affinity` | node/pod affinities | `node`
-`nodeSelector` | node labels for pod assignment | `{}`
-`service.type` | type of service | `ClusterIP`
-`token` | Ngrok auth token | `none`
-`expose.service` | Service address to be exposed as in `service-name:port` | `none`
-`subdomain` | Ngrok subdomain | `none`
+`telegram_bot_id` | Telegram Bot Token | `-`
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
-
-```console
-$ helm upgrade --install --wait tunel \
-  --set token=NGROK-TOKEN \
-  --set service.type=NodePort \
-  --set expose.service=podinfo:9898 \
-  sp/ngrok
-```
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 Alternatively, a YAML file that specifies the values for the above parameters can be provided while installing the chart. For example,
 
 ```console
-$ helm install sp/grafana --name my-release -f values.yaml
+$ helm install math/math --name math-bot -f values.yaml
 ```
 
 > **Tip**: You can use the default [values.yaml](values.yaml)
 ```
-

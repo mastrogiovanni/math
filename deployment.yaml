@@ -3,26 +3,26 @@ kind: ConfigMap
 metadata:
   name: bot-config
 data:
-  telegram_bot_id: "Telegram Bot token"
+  telegram_bot_id: "<Telegram Bot token>"
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: biliardino-bot
+  name: math-bot
   labels:
-    app: biliardino
+    app: math
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: biliardino
+      app: math
   template:
     metadata:
       labels:
-        app: biliardino
+        app: math
     spec:
       containers:
-      - name: biliardino
+      - name: math
         image: mastrogiovanni/math
         imagePullPolicy: Always
         ports:

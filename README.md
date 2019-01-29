@@ -1,6 +1,6 @@
 # Math
 
-Simple Telegram Bot to practice in Math
+Simple Telegram Bot to practice in Math: it send to my son Paolo multiplications to compute.
 
 ## Installing the Chart
 

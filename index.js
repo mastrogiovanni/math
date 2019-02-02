@@ -65,10 +65,18 @@ bot.start((message) => {
 })
 
 bot.on('text', message => {
-    giocatori[message.from.id].test(message.message.text)
-    message.reply(giocatori[message.from.id].response)
-    giocatori[message.from.id].risultato = generator()
-    message.reply(giocatori[message.from.id].risultato.text)
+    if (giocatori[message.from.id] !== undefined) {
+        giocatori[message.from.id].test(message.message.text)
+        message.reply(giocatori[message.from.id].response)
+        giocatori[message.from.id].risultato = generator()
+        message.reply(giocatori[message.from.id].risultato.text)
+    } else {
+        giocatori[message.from.id] = new scores(generator)
+        return message.reply(
+            'Benvenuto ' + message.from.first_name + ' nella gara di moltiplicazioni, pronto per iniziare?\n' + 
+            giocatori[message.from.id].risultato.text
+        );
+    }
 })
 
 bot.startPolling();
